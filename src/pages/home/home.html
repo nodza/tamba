@@ -14,5 +14,7 @@
 
 
 <ion-content padding>
-
+  <div *ngIf="games">
+    {{ games | json }}
+  </div>
 </ion-content>

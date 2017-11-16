@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -16,7 +15,7 @@ export class DataProvider {
   options = new RequestOptions({ headers: this.headers });
   limit:number = 50;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: Http) {
     console.log('Hello DataProvider Provider');
   }
 
@@ -24,7 +23,7 @@ export class DataProvider {
     let genre_id = genre;
     let offset = offset_num;
 
-    return this.http.get('https://api-2445582011268.apicast.io/games/?fields=name,release_dates,screenshots&limit='+this.limit+'&offset='+offset+'&order=release_dates.date:desc&filter[genres][eq]='+genre_id+'&filter[screenshots][exists]', this.options)
+    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/games/?fields=name,release_dates,screenshots&limit='+this.limit+'&offset='+offset+'&order=release_dates.date:desc&filter[genres][eq]='+genre_id+'&filter[screenshots][exists]', this.options)
       .map(response => response.json());
   }
 
