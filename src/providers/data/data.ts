@@ -37,4 +37,9 @@ export class DataProvider {
 
   }
 
+  getGenres() {
+    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/genres/?fields=*', this.options)
+      .map(response => response.json());
+  }
+
 }

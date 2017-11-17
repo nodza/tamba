@@ -6,13 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>genres</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Game Genres</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let genre of genres" (click)="genreSelected(genre)">
+      {{ genre.name }}
+      <ion-icon name="checkmark-circle" color="primary" item-end *ngIf="genre.id == currentGenre"></ion-icon>
+    </button>
+  </ion-list>
 </ion-content>
