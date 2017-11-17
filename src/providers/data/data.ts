@@ -42,4 +42,9 @@ export class DataProvider {
       .map(response => response.json());
   }
 
+  searchGames(keyword) {
+    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/games/?fields=name,release_dates,screenshots&limit='+this.limit+'&offset=0&order=release_dates.date:desc&search='+keyword, this.options)
+      .map(response => response.json());
+  }
+
 }

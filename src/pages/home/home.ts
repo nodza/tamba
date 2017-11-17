@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Keyboard } from '@ionic-native/keyboard';
 import { DataProvider } from '../../providers/data/data';
 import { GenresPage } from '../genres/genres';
 
@@ -17,7 +18,9 @@ import { GenresPage } from '../genres/genres';
   templateUrl: 'home.html',
 })
 export class HomePage {
+  @ViewChild(Content) content: Content;
 
+  showSearch = false;
   games = [];
   genre: any;
   genreName: string = 'Upcoming Games';
@@ -28,7 +31,8 @@ export class HomePage {
     public navParams: NavParams,
     public loading: LoadingController,
     public modalCtrl: ModalController,
-    private _data: DataProvider, 
+    private _data: DataProvider,
+    public keyboard: Keyboard,
     private storage: Storage) {
 
     let loader = this.loading.create({
@@ -113,6 +117,20 @@ export class HomePage {
       loader.dismiss();
     });
     modal.present();
+  }
+
+  showSearchBox() {
+    this.showSearch = !this.showSearch;
+    this.content.scrollToTop();
+  }
+
+  search(term) {
+    let search_term = term;
+    this.keyboard.close();
+    this.genreName = search_term;
+    this.showSearch = false;
+    this._data.searchGames(search_term)
+      .subscribe(res => this.games = res);
   }
 
   ionViewDidLoad() {
