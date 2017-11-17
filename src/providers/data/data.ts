@@ -27,4 +27,14 @@ export class DataProvider {
       .map(response => response.json());
   }
 
+  getFavorites(favs) {
+
+    let favorites = favs;
+    favorites = favorites.join();
+
+    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/games/'+favorites+'?fields=name,release_dates,screenshots&order=release_dates.date:desc&filter[screenshots][exists]', this.options)
+      .map(response => response.json());
+
+  }
+
 }

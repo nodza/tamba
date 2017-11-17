@@ -5,16 +5,60 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>home</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{ genreName }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-start (click)="openFavorites()" class="btn-txt">
+        <ion-icon name="star"></ion-icon>
+        Favs
+      </button>
+      <button ion-button icon-start (click)="openGenres()" class="btn-txt">
+        <ion-icon name="funnel"></ion-icon>
+        Filter
+      </button>
+      <button ion-button icon-start (click)="showSearchBox()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
+<ion-content class="card-background-page">
   <div *ngIf="games">
-    {{ games | json }}
+    <ion-card *ngFor="let game of games">
+
+      <div *ngIf="game.screenshots; then gamescreen else noscreen"></div>
+
+      <ng-template #gamescreen>
+        <div class="game-image">
+          <img src="https://images.igdb.com/igdb/image/upload/t_screenshot_med_2x/{{game.screenshots[0].cloudinary_id}}.jpg" class="tinted">
+        </div>
+      </ng-template>
+
+      <ng-template #noscreen>
+        <div class="game-image">
+          <img src="http://placehold.it/400x160">
+        </div>
+      </ng-template>
+
+      <div *ngIf="favorites.indexOf(game.id) == '-1'; then fav else remove"></div>
+
+      <ng-template #fav>
+        <button ion-button outline medium color="primary" icon-only (click)="favorite(game.id)">
+          <ion-icon name="star"></ion-icon>
+        </button>
+      </ng-template>
+
+      <ng-template #remove>
+        <button ion-button medium color="primary" icon-only (click)="removeFavorite(game.id)">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ng-template>
+
+      <div class="card-title" (click)="detailsPage(game.id)">{{ game.name }}</div>
+      <div class="card-subtitle" *ngIf="game.release_dates">{{ game.release_dates[0].m }} / {{ game.release_dates[0].y }}</div>
+
+    </ion-card>
   </div>
 </ion-content>
