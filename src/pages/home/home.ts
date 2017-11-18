@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, trigger, style, transition, animate, keyframes } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ModalController, Content } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -10,6 +10,22 @@ import { DetailsPage } from '../details/details';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
+  animations: [
+    trigger('fadeOut', [
+      transition(':leave', [
+        animate('300ms ease-in', keyframes([
+          style({ opacity: 0, transform: 'translateX(0)', offset: 0 }),
+          style({ opacity: 1, transform: 'translateX(-50px)', offset: 1 }),
+        ]))
+      ]),
+      transition(':enter', [
+        animate('300ms ease-in', keyframes([
+          style({ opacity: 0, transform: 'translateX(-50px)', offset: 0 }),
+          style({ opacity: 1, transform: 'translateX(0)', offset: 1 })
+        ]))
+      ])
+    ])
+  ]
 })
 export class HomePage {
   @ViewChild(Content) content: Content;
@@ -44,7 +60,7 @@ export class HomePage {
           this.genreName = 'Tactical';
           this.storage.set('genre', this.genre);
         }
-        this._data.getGames('12', 0)
+        this._data.getGames(this.genre, 0)
           .subscribe(res => this.games = res);
       });
 

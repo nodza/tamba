@@ -15,7 +15,7 @@
       <img src="https://images.igdb.com/igdb/image/upload/t_screenshot_med_2x/{{game.screenshots[0].cloudinary_id}}.jpg" class="tinted">
     </div>
 
-    <div id="popover">
+    <div id="popover" [@fadeIn]>
       <ion-grid>
         <ion-row>
           <ion-col col-6>
@@ -40,7 +40,7 @@
       </ion-grid>
     </div>
 
-    <ion-card padding>
+    <ion-card padding [@fadeUp]>
       <h4>Game Summary</h4>
       <p>{{ game.summary}}</p>
     </ion-card>

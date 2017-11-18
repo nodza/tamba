@@ -83,4 +83,5 @@
     <engine name="ios" spec="~4.2.1" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.2" />
+    <plugin name="cordova-plugin-youtube-video-player" spec="~1.0.6" />
 </widget>

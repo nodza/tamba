@@ -23,7 +23,7 @@ export class DataProvider {
     let genre_id = genre;
     let offset = offset_num;
 
-    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/games/?fields=name,release_dates,screenshots&limit='+this.limit+'&offset='+offset+'&order=release_dates.date:desc&filter[genres][eq]='+genre_id+'&filter[screenshots][exists]', this.options)
+    return this.http.get('http://06df41fb.ngrok.io/https://api-2445582011268.apicast.io/games/?fields=name,release_dates,screenshots&limit='+this.limit+'&offset='+offset+'&order=release_dates.date:desc&filter[genres][eq]='+genre_id+'&filter[screenshots][exists]', this.options)
       .map(response => response.json());
   }
 
@@ -32,32 +32,32 @@ export class DataProvider {
     let favorites = favs;
     favorites = favorites.join();
 
-    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/games/'+favorites+'?fields=name,release_dates,screenshots&order=release_dates.date:desc&filter[screenshots][exists]', this.options)
+    return this.http.get('http://06df41fb.ngrok.io/https://api-2445582011268.apicast.io/games/'+favorites+'?fields=name,release_dates,screenshots&order=release_dates.date:desc&filter[screenshots][exists]', this.options)
       .map(response => response.json());
 
   }
 
   getGenres() {
-    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/genres/?fields=*', this.options)
+    return this.http.get('http://06df41fb.ngrok.io/https://api-2445582011268.apicast.io/genres/?fields=*', this.options)
       .map(response => response.json());
   }
 
   searchGames(keyword) {
-    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/games/?fields=name,release_dates,screenshots&limit='+this.limit+'&offset=0&order=release_dates.date:desc&search='+keyword, this.options)
+    return this.http.get('http://06df41fb.ngrok.io/https://api-2445582011268.apicast.io/games/?fields=name,release_dates,screenshots&limit='+this.limit+'&offset=0&order=release_dates.date:desc&search='+keyword, this.options)
       .map(response => response.json());
   }
 
   getGame(game) {
     let game_id = game;
 
-    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/games/'+game_id+'?fields=*', this.options)
+    return this.http.get('http://06df41fb.ngrok.io/https://api-2445582011268.apicast.io/games/'+game_id+'?fields=*', this.options)
       .map(response => response.json());
   }
 
   getPerspective(perspective) {
     let persp_id = perspective;
 
-    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/player_perspectives/'+persp_id+'?fields=name', this.options)
+    return this.http.get('http://06df41fb.ngrok.io/https://api-2445582011268.apicast.io/player_perspectives/'+persp_id+'?fields=name', this.options)
       .map(response => response.json());
   }
 
