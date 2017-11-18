@@ -10,13 +10,15 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { GenresPage } from '../pages/genres/genres';
+import { DetailsPage } from '../pages/details/details';
 import { DataProvider } from '../providers/data/data';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    GenresPage
+    GenresPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { DataProvider } from '../providers/data/data';
   entryComponents: [
     MyApp,
     HomePage,
-    GenresPage
+    GenresPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,

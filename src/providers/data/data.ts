@@ -47,4 +47,18 @@ export class DataProvider {
       .map(response => response.json());
   }
 
+  getGame(game) {
+    let game_id = game;
+
+    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/games/'+game_id+'?fields=*', this.options)
+      .map(response => response.json());
+  }
+
+  getPerspective(perspective) {
+    let persp_id = perspective;
+
+    return this.http.get('http://localhost:8080/https://api-2445582011268.apicast.io/player_perspectives/'+persp_id+'?fields=name', this.options)
+      .map(response => response.json());
+  }
+
 }

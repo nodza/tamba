@@ -4,13 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Keyboard } from '@ionic-native/keyboard';
 import { DataProvider } from '../../providers/data/data';
 import { GenresPage } from '../genres/genres';
-
-/**
- * Generated class for the HomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DetailsPage } from '../details/details';
 
 @IonicPage()
 @Component({
@@ -131,6 +125,12 @@ export class HomePage {
     this.showSearch = false;
     this._data.searchGames(search_term)
       .subscribe(res => this.games = res);
+  }
+
+  detailsPage(game) {
+    this.navCtrl.push(DetailsPage, {
+      game: game
+    })
   }
 
   ionViewDidLoad() {
